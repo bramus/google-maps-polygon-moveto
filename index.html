@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Google Maps v3 Move A Polygon</title>
+
+	<link href="css/default.css" rel="stylesheet" />
+
+	<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
+	<script src="js/google.maps.Polygon.getBounds.js"></script>
+	<script src="js/google.maps.Polygon.moveTo.js"></script>
+
+	<script>
+		window.addEventListener('load', function(e) {
+
+			var map = new google.maps.Map(document.getElementById('map_canvas'), {
+				zoom: 2,
+				center: new google.maps.LatLng(0, 0),
+				mapTypeId: google.maps.MapTypeId.TERRAIN
+			});
+
+			// A simple shape definition
+			var shapeCoords = [
+				[new google.maps.LatLng(20, 20), new google.maps.LatLng(20, -20), new google.maps.LatLng(-20, -20), new google.maps.LatLng(0, 0), new google.maps.LatLng(-20, 20)]
+			];
+
+			// Add the shape twice (both on the same, original, location)
+			var poly = new google.maps.Polygon({
+				paths : shapeCoords,
+				strokeColor: '#ff0000',
+				strokeOpacity: 1,
+				strokeWeight: 1,
+				fillColor: '#ff0000',
+				fillOpacity: 0.4,
+				zIndex: 2,
+				map: map,
+				draggable: true,
+				geodesic: true
+			});
+			var poly2 = new google.maps.Polygon({
+				paths : shapeCoords,
+				strokeColor: '#00ff00',
+				strokeOpacity: 1,
+				strokeWeight: 1,
+				fillColor: '#00ff00',
+				fillOpacity: 0.4,
+				zIndex: 2,
+				map: map,
+				draggable: true,
+				geodesic: true
+			});
+
+			// Move the 2nd polygon to a new location
+			// @note: when geodesic is set to false it's recommened to use setTimeout() in order to have the getProjection() function available on the map
+			poly2.moveTo(new google.maps.LatLng(25, -25));
+
+		});
+	</script>
+</head>
+<body>
+	<div id="map_canvas"></div>
+	<header><p><code>google.maps.Polygon.moveTo(new google.maps.LatLng(<em>lat</em>, <em>lng</em>));</code> &mdash; built by <a href="http://www.bram.us/">Bramus!</a></p></header>
+</body>
+</html>
