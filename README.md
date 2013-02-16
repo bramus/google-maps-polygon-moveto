@@ -1,12 +1,12 @@
 # google.maps.Polygon.moveTo()
 
-Move a Polygon on Google Maps V3 to a new LatLng()
+Programmatically move a `google.maps.Polygon` to a new `google.maps.LatLng` using Google Maps V3
 Built by Bramus! - [http://www.bram.us/](http://www.bram.us/)
 
 
 ## About
 
-`google.maps.Polygon.moveTo()` is a Google Maps extension allowing one to programmatically move a `google.maps.Polygon` on the map without any user/mouse interaction. Works with both geodesic _(polygons that follow the curvature of the earth)_ and non-geodesic _(straight)_ polygons.
+Since Google Maps v3.11 it's possible to move around a `google.maps.Polygon` by using the mouse _(if the `draggable` property is set to `true`)_. `google.maps.Polygon.moveTo()` is a Google Maps extension augmenting that functionality by allowing one to programmatically move a `google.maps.Polygon` on the map without any user/mouse interaction. The script works with both geodesic _(polygons that follow the curvature of the earth)_ and non-geodesic _(straight)_ polygons.
 
 
 ## Installation
@@ -23,5 +23,4 @@ See the example. Basically just call `myPolygon.moveTo(new google.maps.LatLng(la
 ## Notes / Bugs
 
 * Alas it's not perfect: Rounding errors occur _(You can see this best when moving a polygon with `geodesic` enabled to one location and then moving it back: you'll see that the shape seems to have tilted a bit)_
-* It doesn't play nice (yet) with Polygons consisting of multiple paths
 * When using non-geodesic polygons it's recommened to wrap `google.maps.Polygon#moveTo()` in a `setTimeout()` with a timing of `200` in order to have `google.maps.Map#getProjection()` available _(it's only available after the map has started rendering)_
