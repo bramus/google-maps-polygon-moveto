@@ -24,3 +24,9 @@ See the example. Basically just call `myPolygon.moveTo(new google.maps.LatLng(la
 
 * Alas it's not perfect: Rounding errors occur _(You can see this best when moving a polygon with `geodesic` enabled to one location and then moving it back: you'll see that the shape seems to have tilted a bit)_
 * When using non-geodesic polygons it's recommened to wrap `google.maps.Polygon#moveTo()` in a `setTimeout()` with a timing of `200` in order to have `google.maps.Map#getProjection()` available _(it's only available after the map has started rendering)_
+
+
+
+## License
+
+`google.maps.Polygon.moveTo()` is released under the MIT public license. See the enclosed `LICENSE` for details.
